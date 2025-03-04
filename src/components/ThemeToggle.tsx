@@ -32,13 +32,17 @@ export default function ThemeToggle() {
       variant="ghost" 
       size="icon" 
       onClick={toggleTheme}
-      className="fixed top-4 right-4 h-10 w-10 rounded-full bg-background/50 backdrop-blur-sm border border-border transition-all hover:scale-110"
+      className="fixed top-4 right-4 h-12 w-12 rounded-full bg-background/60 backdrop-blur-md border border-border transition-all duration-300 hover:scale-110 hover:shadow-lg z-50"
+      aria-label="Toggle theme"
     >
-      {theme === "light" ? (
-        <Moon className="h-5 w-5 animate-fade-in" />
-      ) : (
-        <Sun className="h-5 w-5 animate-fade-in" />
-      )}
+      <div className="relative w-6 h-6">
+        <Sun className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+          theme === 'light' ? 'opacity-0 scale-50 rotate-90' : 'opacity-100 scale-100 rotate-0'
+        }`} />
+        <Moon className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+          theme === 'light' ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 rotate-90'
+        }`} />
+      </div>
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
